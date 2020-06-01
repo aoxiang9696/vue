@@ -5,13 +5,14 @@
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.Vue = factory());
-}(this, function () { 'use strict';
+    typeof define === 'function' && define.amd ? define(factory) :
+      (global = global || self, global.Vue = factory());
+}(this, function () {
+  'use strict';
 
-  /*  */
+  /* 工厂设计模式：在不同的条件下创建不同的实例对象 */
 
-  var emptyObject = Object.freeze({});
+  var emptyObject = Object.freeze({}); // Object.freeze()冻结参数，不能增删改
 
   // These helpers produce better VM code in JS engines due to their
   // explicitness and function inlining.
@@ -266,7 +267,7 @@
    * Stubbing args to make Flow happy without leaving useless transpiled code
    * with ...rest (https://flow.org/blog/2017/05/07/Strict-Function-Call-Arity/).
    */
-  function noop (a, b, c) {}
+  function noop (a, b, c) { }
 
   /**
    * Always return false.
@@ -524,7 +525,7 @@
   /*  */
 
   // can we use __proto__?
-  var hasProto = '__proto__' in {};
+  var hasProto = '__proto__' in {}; // 关键字检测'__proto__' 是否在对象中
 
   // Browser environment sniffing
   var inBrowser = typeof window !== 'undefined';
@@ -554,7 +555,7 @@
         }
       })); // https://github.com/facebook/flow/issues/285
       window.addEventListener('test-passive', null, opts);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // this needs to be lazy-evaled because vue may be required before
@@ -621,9 +622,11 @@
   {
     var hasConsole = typeof console !== 'undefined';
     var classifyRE = /(?:^|[-_])(\w)/g;
-    var classify = function (str) { return str
-      .replace(classifyRE, function (c) { return c.toUpperCase(); })
-      .replace(/[-_]/g, ''); };
+    var classify = function (str) {
+      return str
+        .replace(classifyRE, function (c) { return c.toUpperCase(); })
+        .replace(/[-_]/g, '');
+    };
 
     warn = function (msg, vm) {
       var trace = vm ? generateComponentTrace(vm) : '';
@@ -695,9 +698,11 @@
           vm = vm.$parent;
         }
         return '\n\nfound in\n\n' + tree
-          .map(function (vm, i) { return ("" + (i === 0 ? '---> ' : repeat(' ', 5 + i * 2)) + (Array.isArray(vm)
+          .map(function (vm, i) {
+            return ("" + (i === 0 ? '---> ' : repeat(' ', 5 + i * 2)) + (Array.isArray(vm)
               ? ((formatComponentName(vm[0])) + "... (" + (vm[1]) + " recursive calls)")
-              : formatComponentName(vm))); })
+              : formatComponentName(vm)));
+          })
           .join('\n')
       } else {
         return ("\n\n(found in " + (formatComponentName(vm)) + ")")
@@ -807,10 +812,10 @@
     return this.componentInstance
   };
 
-  Object.defineProperties( VNode.prototype, prototypeAccessors );
+  Object.defineProperties(VNode.prototype, prototypeAccessors);
 
   var createEmptyVNode = function (text) {
-    if ( text === void 0 ) text = '';
+    if (text === void 0) text = '';
 
     var node = new VNode();
     node.text = text;
@@ -878,7 +883,7 @@
     var original = arrayProto[method];
     def(arrayMethods, method, function mutator () {
       var args = [], len = arguments.length;
-      while ( len-- ) args[ len ] = arguments[ len ];
+      while (len--) args[len] = arguments[len];
 
       var result = original.apply(this, args);
       var ob = this.__ob__;
@@ -1372,23 +1377,23 @@
    * Other object hashes.
    */
   strats.props =
-  strats.methods =
-  strats.inject =
-  strats.computed = function (
-    parentVal,
-    childVal,
-    vm,
-    key
-  ) {
-    if (childVal && "development" !== 'production') {
-      assertObjectType(key, childVal, vm);
-    }
-    if (!parentVal) { return childVal }
-    var ret = Object.create(null);
-    extend(ret, parentVal);
-    if (childVal) { extend(ret, childVal); }
-    return ret
-  };
+    strats.methods =
+    strats.inject =
+    strats.computed = function (
+      parentVal,
+      childVal,
+      vm,
+      key
+    ) {
+      if (childVal && "development" !== 'production') {
+        assertObjectType(key, childVal, vm);
+      }
+      if (!parentVal) { return childVal }
+      var ret = Object.create(null);
+      extend(ret, parentVal);
+      if (childVal) { extend(ret, childVal); }
+      return ret
+    };
   strats.provide = mergeDataOrFn;
 
   /**
@@ -1788,8 +1793,8 @@
     var receivedValue = styleValue(value, receivedType);
     // check if we need to specify expected value
     if (expectedTypes.length === 1 &&
-        isExplicable(expectedType) &&
-        !isBoolean(expectedType, receivedType)) {
+      isExplicable(expectedType) &&
+      !isBoolean(expectedType, receivedType)) {
       message += " with value " + expectedValue;
     }
     message += ", got " + receivedType + " ";
@@ -1817,7 +1822,7 @@
 
   function isBoolean () {
     var args = [], len = arguments.length;
-    while ( len-- ) args[ len ] = arguments[ len ];
+    while (len--) args[len] = arguments[len];
 
     return args.some(function (elem) { return elem.toLowerCase() === 'boolean'; })
   }
@@ -2303,7 +2308,7 @@
           }
         }
         checkProp(res, props, key, altKey, true) ||
-        checkProp(res, attrs, key, altKey, false);
+          checkProp(res, attrs, key, altKey, false);
       }
     }
     return res
@@ -2592,7 +2597,7 @@
     return res
   }
 
-  function normalizeScopedSlot(normalSlots, key, fn) {
+  function normalizeScopedSlot (normalSlots, key, fn) {
     var normalized = function () {
       var res = arguments.length ? fn.apply(null, arguments) : fn({});
       res = res && typeof res === 'object' && !Array.isArray(res)
@@ -2617,7 +2622,7 @@
     return normalized
   }
 
-  function proxyNormalSlot(slots, key) {
+  function proxyNormalSlot (slots, key) {
     return function () { return slots[key]; }
   }
 
@@ -2767,7 +2772,7 @@
           value = toObject(value);
         }
         var hash;
-        var loop = function ( key ) {
+        var loop = function (key) {
           if (
             key === 'class' ||
             key === 'style' ||
@@ -2794,7 +2799,7 @@
           }
         };
 
-        for (var key in value) loop( key );
+        for (var key in value) loop(key);
       }
     }
     return data
@@ -3317,7 +3322,7 @@
   function transformModel (options, data) {
     var prop = (options.model && options.model.prop) || 'value';
     var event = (options.model && options.model.event) || 'input'
-    ;(data.attrs || (data.attrs = {}))[prop] = data.model.value;
+      ; (data.attrs || (data.attrs = {}))[prop] = data.model.value;
     var on = data.on || (data.on = {});
     var existing = on[event];
     var callback = data.model.callback;
@@ -3643,7 +3648,7 @@
       var timerLoading = null;
       var timerTimeout = null
 
-      ;(owner).$on('hook:destroyed', function () { return remove(owners, owner); });
+        ; (owner).$on('hook:destroyed', function () { return remove(owners, owner); });
 
       var forceRender = function (renderCompleted) {
         for (var i = 0, l = owners.length; i < l; i++) {
@@ -3898,7 +3903,7 @@
   var activeInstance = null;
   var isUpdatingChildComponent = false;
 
-  function setActiveInstance(vm) {
+  function setActiveInstance (vm) {
     var prevActiveInstance = activeInstance;
     activeInstance = vm;
     return function () {
@@ -4659,14 +4664,14 @@
     if (!isRoot) {
       toggleObserving(false);
     }
-    var loop = function ( key ) {
+    var loop = function (key) {
       keys.push(key);
       var value = validateProp(key, propsOptions, propsData, vm);
       /* istanbul ignore else */
       {
         var hyphenatedKey = hyphenate(key);
         if (isReservedAttribute(hyphenatedKey) ||
-            config.isReservedAttr(hyphenatedKey)) {
+          config.isReservedAttr(hyphenatedKey)) {
           warn(
             ("\"" + hyphenatedKey + "\" is a reserved attribute and cannot be used as component prop."),
             vm
@@ -4692,7 +4697,7 @@
       }
     };
 
-    for (var key in propsOptions) loop( key );
+    for (var key in propsOptions) loop(key);
     toggleObserving(true);
   }
 
@@ -4839,7 +4844,7 @@
     }
   }
 
-  function createGetterInvoker(fn) {
+  function createGetterInvoker (fn) {
     return function computedGetter () {
       return fn.call(this, this)
     }
@@ -7378,13 +7383,13 @@
     );
     addHandler(el, 'change',
       "var $$a=" + value + "," +
-          '$$el=$event.target,' +
-          "$$c=$$el.checked?(" + trueValueBinding + "):(" + falseValueBinding + ");" +
+      '$$el=$event.target,' +
+      "$$c=$$el.checked?(" + trueValueBinding + "):(" + falseValueBinding + ");" +
       'if(Array.isArray($$a)){' +
-        "var $$v=" + (number ? '_n(' + valueBinding + ')' : valueBinding) + "," +
-            '$$i=_i($$a,$$v);' +
-        "if($$el.checked){$$i<0&&(" + (genAssignmentCode(value, '$$a.concat([$$v])')) + ")}" +
-        "else{$$i>-1&&(" + (genAssignmentCode(value, '$$a.slice(0,$$i).concat($$a.slice($$i+1))')) + ")}" +
+      "var $$v=" + (number ? '_n(' + valueBinding + ')' : valueBinding) + "," +
+      '$$i=_i($$a,$$v);' +
+      "if($$el.checked){$$i<0&&(" + (genAssignmentCode(value, '$$a.concat([$$v])')) + ")}" +
+      "else{$$i>-1&&(" + (genAssignmentCode(value, '$$a.slice(0,$$i).concat($$a.slice($$i+1))')) + ")}" +
       "}else{" + (genAssignmentCode(value, '$$c')) + "}",
       null, true
     );
@@ -7656,7 +7661,7 @@
         // e.g. `value` on <progress> w/ non-finite value
         try {
           elm[key] = cur;
-        } catch (e) {}
+        } catch (e) { }
       }
     }
   }
@@ -7678,7 +7683,7 @@
     var notInFocus = true;
     // #6157
     // work around IE bug when accessing document.activeElement in an iframe
-    try { notInFocus = document.activeElement !== elm; } catch (e) {}
+    try { notInFocus = document.activeElement !== elm; } catch (e) { }
     return notInFocus && elm.value !== checkVal
   }
 
@@ -8890,7 +8895,7 @@
           if (c.key != null && String(c.key).indexOf('__vlist') !== 0) {
             children.push(c);
             map[c.key] = c
-            ;(c.data || (c.data = {})).transition = transitionData;
+              ; (c.data || (c.data = {})).transition = transitionData;
           } else {
             var opts = c.componentOptions;
             var name = opts ? (opts.Ctor.options.name || opts.tag || '') : c.tag;
@@ -9658,7 +9663,7 @@
             // keep it in the children list so that v-else(-if) conditions can
             // find it as the prev node.
             var name = element.slotTarget || '"default"'
-            ;(currentParent.scopedSlots || (currentParent.scopedSlots = {}))[name] = element;
+              ; (currentParent.scopedSlots || (currentParent.scopedSlots = {}))[name] = element;
           }
           currentParent.children.push(element);
           element.parent = currentParent;
@@ -10393,8 +10398,8 @@
         // #6887 firefox doesn't update muted state if set via attribute
         // even immediately after element creation
         if (!el.component &&
-            name === 'muted' &&
-            platformMustUseProp(el.tag, el.attrsMap.type, name)) {
+          name === 'muted' &&
+          platformMustUseProp(el.tag, el.attrsMap.type, name)) {
           addProp(el, name, 'true', list[i]);
         }
       }
@@ -11092,7 +11097,7 @@
     el.forProcessed = true; // avoid recursion
     return (altHelper || '_l') + "((" + exp + ")," +
       "function(" + alias + iterator1 + iterator2 + "){" +
-        "return " + ((altGen || genElement)(el, state)) +
+      "return " + ((altGen || genElement)(el, state)) +
       '})'
   }
 
@@ -11273,10 +11278,10 @@
     return ("scopedSlots:_u([" + generatedSlots + "]" + (needsForceUpdate ? ",null,true" : "") + (!needsForceUpdate && needsKey ? (",null,false," + (hash(generatedSlots))) : "") + ")")
   }
 
-  function hash(str) {
+  function hash (str) {
     var hash = 5381;
     var i = str.length;
-    while(i) {
+    while (i) {
       hash = (hash * 33) ^ str.charCodeAt(--i);
     }
     return hash >>> 0
@@ -11361,12 +11366,12 @@
         continue
       }
       if (needsNormalization(el) ||
-          (el.ifConditions && el.ifConditions.some(function (c) { return needsNormalization(c.block); }))) {
+        (el.ifConditions && el.ifConditions.some(function (c) { return needsNormalization(c.block); }))) {
         res = 2;
         break
       }
       if (maybeComponent(el) ||
-          (el.ifConditions && el.ifConditions.some(function (c) { return maybeComponent(c.block); }))) {
+        (el.ifConditions && el.ifConditions.some(function (c) { return maybeComponent(c.block); }))) {
         res = 1;
       }
     }
@@ -11402,12 +11407,14 @@
     var children = genChildren(el, state);
     var res = "_t(" + slotName + (children ? ("," + children) : '');
     var attrs = el.attrs || el.dynamicAttrs
-      ? genProps((el.attrs || []).concat(el.dynamicAttrs || []).map(function (attr) { return ({
+      ? genProps((el.attrs || []).concat(el.dynamicAttrs || []).map(function (attr) {
+        return ({
           // slot props are camelized
           name: camelize(attr.name),
           value: attr.value,
           dynamic: attr.dynamic
-        }); }))
+        });
+      }))
       : null;
     var bind$$1 = el.attrsMap['v-bind'];
     if ((attrs || bind$$1) && !children) {
@@ -11595,8 +11602,8 @@
     start,
     end
   ) {
-    if ( start === void 0 ) start = 0;
-    if ( end === void 0 ) end = source.length;
+    if (start === void 0) start = 0;
+    if (end === void 0) end = source.length;
 
     var lines = source.split(/\r?\n/);
     var count = 0;
@@ -11743,7 +11750,7 @@
               var code = ref.code;
 
               return ((err.toString()) + " in\n\n" + code + "\n");
-          }).join('\n'),
+            }).join('\n'),
             vm
           );
         }
