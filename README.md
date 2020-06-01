@@ -31,7 +31,7 @@ Funds donated via Patreon go directly to support Evan You's full-time work on Vu
     <img width="260px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/autocode.svg?sanitize=true">
   </a>
 </p>
-  
+
 <!--special end-->
 
 <h3 align="center">Platinum Sponsors</h3>
@@ -248,11 +248,11 @@ Vue.js supports all browsers that are [ES5-compliant](http://kangax.github.io/co
 
 | Project | Status | Description |
 |---------|--------|-------------|
-| [vue-router]          | [![vue-router-status]][vue-router-package] | Single-page application routing |
-| [vuex]                | [![vuex-status]][vuex-package] | Large-scale state management |
-| [vue-cli]             | [![vue-cli-status]][vue-cli-package] | Project scaffolding |
-| [vue-loader]          | [![vue-loader-status]][vue-loader-package] | Single File Component (`*.vue` file) loader for webpack |
-| [vue-server-renderer] | [![vue-server-renderer-status]][vue-server-renderer-package] | Server-side rendering support |
+| [vue-router]          | [![vue-router-status]][vue-router-package] | Single-page application routing（路由管理器） |
+| [vuex]                | [![vuex-status]][vuex-package] | Large-scale state management（状态管理模式） |
+| [vue-cli]             | [![vue-cli-status]][vue-cli-package] | Project scaffolding（脚手架） |
+| [vue-loader]          | [![vue-loader-status]][vue-loader-package] | Single File Component (`*.vue` file) loader for webpack（webpack的loader,允许以单文件组件（SFCs的格式写Vue组件）） |
+| [vue-server-renderer] | [![vue-server-renderer-status]][vue-server-renderer-package] | Server-side rendering support（服务端渲染，ssr） |
 | [vue-class-component] | [![vue-class-component-status]][vue-class-component-package] | TypeScript decorator for a class-based API |
 | [vue-rx]              | [![vue-rx-status]][vue-rx-package] | RxJS integration |
 | [vue-devtools]        | [![vue-devtools-status]][vue-devtools-package] | Browser DevTools extension |
