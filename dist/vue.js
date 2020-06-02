@@ -4,6 +4,7 @@
  * Released under the MIT License.
  */
 (function (global, factory) {
+  // Commonjs规范的nodejs  ，AMD(异步模块定义)
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
       (global = global || self, global.Vue = factory());
