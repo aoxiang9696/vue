@@ -84,7 +84,7 @@
     return n >= 0 && Math.floor(n) === n && isFinite(val)
   }
 
-  function isPromise (val) {
+  function isPromise (val) {  //判断是否是promise
     return (
       isDef(val) &&
       typeof val.then === 'function' &&
@@ -116,38 +116,44 @@
    * Make a map and return a function for checking if a key
    * is in that map.
    */
+
+  // ??为啥
   function makeMap (
     str,
     expectsLowerCase
   ) {
-    var map = Object.create(null);
+    var map = Object.create(null);  // 创建不继承任何属性和方法的对象
     var list = str.split(',');
     for (var i = 0; i < list.length; i++) {
       map[list[i]] = true;
     }
     return expectsLowerCase
-      ? function (val) { return map[val.toLowerCase()]; }
+      ? function (val) { return map[val.toLowerCase()]; }  // tiLowerCase()转换成小写字符串
       : function (val) { return map[val]; }
   }
 
   /**
    * Check if a tag is a built-in tag.
    */
+  // map中添加slot和component  map['slot'],map['component']
   var isBuiltInTag = makeMap('slot,component', true);
 
   /**
    * Check if an attribute is a reserved attribute.
    */
+
   var isReservedAttribute = makeMap('key,ref,slot,slot-scope,is');
 
   /**
-   * Remove an item from an array.
+   * Remove an item from an array. 
    */
+  // 删除元素
+  /* ([1,2,3]).indexOf(2)   =>1   数组里也可 */
   function remove (arr, item) {
     if (arr.length) {
       var index = arr.indexOf(item);
       if (index > -1) {
-        return arr.splice(index, 1)
+        return arr.splice(index, 1)   //返回的是被删除的
       }
     }
   }
@@ -155,6 +161,7 @@
   /**
    * Check whether an object has the property.
    */
+  // 用call继承做封装判断某对象是否有某属性
   var hasOwnProperty = Object.prototype.hasOwnProperty;
   function hasOwn (obj, key) {
     return hasOwnProperty.call(obj, key)
