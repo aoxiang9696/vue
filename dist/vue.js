@@ -17,11 +17,11 @@
 
   // These helpers produce better VM code in JS engines due to their
   // explicitness and function inlining.
-  function isUndef (v) {
+  function isUndef (v) { //未定义
     return v === undefined || v === null
   }
 
-  function isDef (v) {
+  function isDef (v) {  // 已定义
     return v !== undefined && v !== null
   }
 
@@ -34,7 +34,7 @@
   }
 
   /**
-   * Check if value is primitive.
+   * Check if value is primitive. （私有判断类型）
    */
   function isPrimitive (value) {
     return (
@@ -51,7 +51,7 @@
    * Objects from primitive values when we know the value
    * is a JSON-compliant type.
    */
-  function isObject (obj) {
+  function isObject (obj) {  // 判断是否是对象
     return obj !== null && typeof obj === 'object'
   }
 
@@ -69,7 +69,7 @@
    * for plain JavaScript objects.
    */
   function isPlainObject (obj) {
-    return _toString.call(obj) === '[object Object]'
+    return _toString.call(obj) === '[object Object]'  //obj指向给Object.prototype.toString()  ,也是判断类型的方式
   }
 
   function isRegExp (v) {
@@ -77,7 +77,7 @@
   }
 
   /**
-   * Check if val is a valid array index.
+   * Check if val is a valid array index. 有效的数组
    */
   function isValidArrayIndex (val) {
     var n = parseFloat(String(val));
