@@ -40,9 +40,9 @@ const builds = {
   'web-runtime-cjs-dev': {
     entry: resolve('web/entry-runtime.js'),
     dest: resolve('dist/vue.runtime.common.dev.js'),
-    format: 'cjs',
+    format: 'cjs',  //文件格式
     env: 'development',
-    banner
+    banner  //前面定义的注释
   },
   'web-runtime-cjs-prod': {
     entry: resolve('web/entry-runtime.js'),
@@ -212,7 +212,7 @@ const builds = {
     external: Object.keys(require('../packages/weex-template-compiler/package.json').dependencies)
   }
 }
-
+// 定义成rollup所需的配置格式
 function genConfig (name) {
   const opts = builds[name]
   const config = {
@@ -268,4 +268,5 @@ if (process.env.TARGET) {
 } else {
   exports.getBuild = genConfig
   exports.getAllBuilds = () => Object.keys(builds).map(genConfig)
+//
 }
