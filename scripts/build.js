@@ -10,7 +10,7 @@ if (!fs.existsSync('dist')) {
 
 let builds = require('./config').getAllBuilds()
 
-// filter builds via command line arg
+// filter builds via command line arg过滤不需要的配置
 if (process.argv[2]) {
   const filters = process.argv[2].split(',')
   builds = builds.filter(b => {
