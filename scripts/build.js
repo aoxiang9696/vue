@@ -4,6 +4,11 @@ const zlib = require('zlib')
 const rollup = require('rollup')
 const terser = require('terser')
 
+
+
+console.log(process);
+
+
 if (!fs.existsSync('dist')) {
   fs.mkdirSync('dist')
 }
@@ -13,6 +18,7 @@ let builds = require('./config').getAllBuilds()
 // filter builds via command line arg过滤不需要的配置
 if (process.argv[2]) {
   const filters = process.argv[2].split(',')
+  // filter()过滤器 return 出想要的元素组成的数组
   builds = builds.filter(b => {
     return filters.some(f => b.output.file.indexOf(f) > -1 || b._name.indexOf(f) > -1)
   })

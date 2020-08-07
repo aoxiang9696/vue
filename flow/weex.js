@@ -16,6 +16,7 @@ declare type Weex = {
 declare type WeexConfigAPI = {
   bundleUrl: string; // === weex.document.URL
   bundleType: string;
+
   env: WeexEnvironment; // === WXEnvironment
 };
 

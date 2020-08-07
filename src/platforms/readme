@@ -1,0 +1,5 @@
+
+
+vue.js是一个跨平台的mvvm框架，它可以跑在web上，也可以配合weex跑在native客户机上。
+platform是vue.js的入口，2个项目代表2个主要入口
+分别打包成运行在 web 上和 weex 上的 Vue.js。

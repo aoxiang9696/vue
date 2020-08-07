@@ -1,5 +1,7 @@
-/* @flow */
-
+// /* @flow */
+/*我们通常会借助.vue单文件来编写组件
+这个目录下的代码把.vue文件内容解析成一个javascript对象
+* */
 import deindent from 'de-indent'
 import { parseHTML } from 'compiler/parser/html-parser'
 import { makeMap } from 'shared/util'
